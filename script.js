@@ -1,23 +1,35 @@
-document.addEventListener('DOMContentLoaded', () => {
-/*----------------MOUSE MOVEMENT ------------------*/
-
-//document.addEventListener('mousemove', function(event) {
-function mouseMovement(event) {
-  var x = event.clientX;
-  var y = event.clientY;
-  var cursor = {x, y};
-  return cursor;
-};
-  
 /*-----------CALCULATE MIDDLE OF SCREEN-----------*/
 function middleOfScreen() {
-  var screenWidth = window.innerWidth;
-  var screenHeight = window.innerHeight;
-  var x = screenWidth / 2;
-  var y = screenHeight / 2;
-  var midPoint = {x, y};
-return midPoint;
-}
+    var screenWidth = window.innerWidth;
+    var screenHeight = window.innerHeight;
+    //console.log("widht:", screenWidth)
+    //console.log("height",screenHeight)
+    var midX = screenWidth / 2;
+    var midY = screenHeight / 2;
+    var midPoint = {midX, midY};
+  return midPoint;
+  }
+
+
+//Declare cursor
+let x = middleOfScreen().midX;
+let y = middleOfScreen().midY;
+let CURSOR = {x,y};
+
+document.addEventListener('mousemove', function(event) {
+  CURSOR.x = event.clientX;
+  CURSOR.y = event.clientY;
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+/*----------------MOUSE MOVEMENT ------------------*/
+const BACKGROUND_COLOR = '#090914';
+const ACCENT_COLOR = '#FFFFFF';
+
+
+
+
 
 
 
@@ -35,39 +47,48 @@ return midPoint;
 
   //Function declarations
   function setBackgroundColor(){
-    ctx.fillStyle = '#090914';
+    ctx.fillStyle = BACKGROUND_COLOR;
     ctx.fillRect(0 , 0, canvas.width, canvas.height);
   }
 
-  function setTextPosition(event) {
-    
-  
-  
+  function setCanvasSize(){
+    drawingBoard = document.getElementById('drawing-board');
+    drawingBoard.width = window.innerWidth;
+    drawingBoard.height = window.innerHeight;
+ }
+
+  function setTextPosition(newX,newY) {
     let midpoint = middleOfScreen();
-    let cursor = mouseMovement(event);
-    let diffX = ((midpoint.x )+ (cursor.x/(100)));
-    let diffY = ((midpoint.y )+ (cursor.y/(100)));
+    let diffX = ((midpoint.midX )) + (newX/(100));
+    let diffY = ((midpoint.midY )) + (newY/(100));
     // Set the font style
-    ctx.font = "bold 24px 'IBM Plex Mono', monospace";
+
+    ctx.font = "14px 'IBM Plex Mono', monospace"; 
+    ctx.textAlign = 'center';
+    ctx.fillStyle = ACCENT_COLOR;
     ctx.fillText("björnfoot", diffX, diffY);
+    //ctx.fillText("björnfoot", CURSOR.x,CURSOR.y);
+    //console.log("diffX:",diffX)
+    //console.log("diffY:",diffY)
   }
 
+ 
 
 
   //Initialize everything to be drawn
+
   
+  //Drawing loop
   function draw() {
     // Clear the canvas
-    setBackgroundColor();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-   
+    setCanvasSize();
+    setBackgroundColor(); 
+
     //Update text to be drawn
+    setTextPosition(CURSOR.x, CURSOR.y);
 
-    //Adding eventlistener so that it gets its functionality
-    document.addEventListener('mousemove', function(event) {
-      setTextPosition(event);
-      });
-
+    //Generate starry night sky? Or something
 
 
     // Request the next frame
