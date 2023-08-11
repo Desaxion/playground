@@ -34,14 +34,6 @@ document.addEventListener('mousemove', function(event) {
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-/*----------------MOUSE MOVEMENT ------------------*/
-const BACKGROUND_COLOR = '#090914';
-const ACCENT_COLOR = '#FFFFFF';
-
-
-
-
 
 // Remove all balls if the right click is hit
 document.addEventListener("contextmenu", function(event) {
@@ -55,7 +47,7 @@ document.addEventListener("contextmenu", function(event) {
 
 //Eventlistener to the document of adding divs.
 let ballCounter = 0;
-let background = document.getElementById('background')
+const background = document.getElementById('background')
 
 
 function addBall() {
@@ -83,9 +75,9 @@ function addBall() {
 }
 
 document.addEventListener('click', () => {
+
   addBall();
   })
-})
 
 function mouseMovement(event) {
   var x = event.clientX;
