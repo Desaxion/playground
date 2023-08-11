@@ -70,6 +70,9 @@ function addBall() {
   ball.style.left = ballPosition.x + 'px';
 
   background.appendChild(ball);
+
+  const newBall = {position:{x:ballPosition.x, y:ballPosition.y},velocity:{x:0,y:0},acceleration:{x:0,y:0},weight:ballWeight,radius:ballRadius, element: ball};
+  balls.push(newBall)
   ballCounter++;
 
 }
@@ -90,9 +93,24 @@ function mouseMovement(event) {
 
 
 //Main tick function
-const intervalMilliseconds = 16; // approximately 60 frames per second
-
+let intervalMilliseconds = 16; // approximately 60 frames per second
+const dt = intervalMilliseconds;
+const gravity = 0.001;
 function tick() {
+  for(let i = 0; i < balls.length; i++){
+
+    balls[i].acceleration.y = gravity;
+    
+    // Forward euler time integration
+    balls[i].velocity.x = balls[i].velocity.x + balls[i].acceleration.x*dt
+    balls[i].velocity.y = balls[i].velocity.y + balls[i].acceleration.y*dt
+
+    balls[i].position.x = balls[i].position.x + balls[i].velocity.x*dt
+    balls[i].position.y = balls[i].position.y + balls[i].velocity.y*dt
+
+    balls[i].element.style.left = balls[i].position.x + 'px';
+    balls[i].element.style.top = balls[i].position.y + 'px';
+  }
   // Your code to be executed at every tick goes here
 
   // For example, you could update the game state, animation, etc.
@@ -100,6 +118,8 @@ function tick() {
 
 // Start the interval
 const intervalID = setInterval(tick, intervalMilliseconds);
+
+
 
 // To stop the interval (for example, when you want to pause the tick):
 // clearInterval(intervalID);
