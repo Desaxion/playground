@@ -12,13 +12,36 @@ document.addEventListener('mousemove', (event) => {
 })
 /*-----------CALCULATE MIDDLE OF SCREEN-----------*/
 function middleOfScreen() {
-  var screenWidth = window.innerWidth;
-  var screenHeight = window.innerHeight;
-  var x = screenWidth / 2;
-  var y = screenHeight / 2;
-  var midPoint = {x, y};
-return midPoint;
-}
+    var screenWidth = window.innerWidth;
+    var screenHeight = window.innerHeight;
+    //console.log("widht:", screenWidth)
+    //console.log("height",screenHeight)
+    var midX = screenWidth / 2;
+    var midY = screenHeight / 2;
+    var midPoint = {midX, midY};
+  return midPoint;
+  }
+
+
+//Declare cursor
+let x = middleOfScreen().midX;
+let y = middleOfScreen().midY;
+let CURSOR = {x,y};
+
+document.addEventListener('mousemove', function(event) {
+  CURSOR.x = event.clientX;
+  CURSOR.y = event.clientY;
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+/*----------------MOUSE MOVEMENT ------------------*/
+const BACKGROUND_COLOR = '#090914';
+const ACCENT_COLOR = '#FFFFFF';
+
+
+
+
 
 // Remove all balls if the right click is hit
 document.addEventListener("contextmenu", function(event) {
@@ -89,3 +112,4 @@ const intervalID = setInterval(tick, intervalMilliseconds);
 // To stop the interval (for example, when you want to pause the tick):
 // clearInterval(intervalID);
 
+})
