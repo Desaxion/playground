@@ -20,6 +20,44 @@ html, body {
   height: 100%;*/
 }
 
+/*---------- ARROW -------------*/
+.arrow {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height: 40px;
+  width: 0px;
+  border: 2px solid white;
+  border-radius: 2px;
+  background: white;
+  transform: /*translate(-50%, -120%)*/ rotate(180deg);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.arrow::before {
+  position: absolute;
+  content:"";
+  height: 20px;
+  width: 0px;
+  border: 2px solid white;
+  border-radius: 2px;
+  transform: translate(-9.2px,-6px) rotate(45deg);
+  background:white;
+}
+
+.arrow::after {
+  position: absolute;
+  content:"";
+  height: 20px;
+  width: 0px;
+  border: 2px solid white;
+  border-radius: 2px;
+  transform: translate(5.2px,-6px) rotate(-45deg);
+  background:white;
+}
+
+
 /*---------- SPECIFIC ----------*/
 #name-holder {
   position:absolute;
@@ -41,4 +79,6 @@ html, body {
   position: absolute;
   border-radius: 50%;
   border: 3px solid white;
+  opacity: 0;
+  transition: opacity 0.1s ease;
 }
