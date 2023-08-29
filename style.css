@@ -82,3 +82,15 @@ html, body {
   opacity: 0;
   transition: opacity 0.1s ease;
 }
+
+.peg {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0,0,0,0);
+  /* background: white; */
+  transition: background 0.1s ease;
+}
+
+.peg.collision {
+  background: red;
+}

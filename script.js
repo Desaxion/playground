@@ -1,5 +1,49 @@
+//const math = require('..')
 let balls = [];
 let pegs = [];
+const pegThickness = 4;
+
+function setUpLevel(level) {
+  for(let i = 0; i < level.pegs.length; i++){
+    let tempPeg = { position: level.pegs[i].position, hit: false, radius: level.pegs[i].radius, id: i }
+    pegs.push(tempPeg)
+  }
+
+  //Make the pegs visible
+  for(let i = 0; i < pegs.length; i++){
+    let peg = document.createElement('div');
+    peg.classList.add('peg')
+    peg.setAttribute('id', `peg-${pegs[i].id}`);
+    //Add styling attributes to the peg
+    peg.style.left = pegs[i].position.x + 'px';
+    peg.style.top = pegs[i].position.y + 'px';
+    peg.style.width = (2*pegs[i].radius - 2*pegThickness) + 'px';
+    peg.style.height = (2*pegs[i].radius - 2*pegThickness) + 'px';
+    //peg.style.background = 'white';
+    peg.style.border = `${pegThickness}px solid white`;
+    //peg.style.transform = `translateX(-${pegs[i].radius - pegThickness}px) translateY(-${pegs[i].radius - pegThickness}px)`;
+    peg.style.transform = `translate(-${pegs[i].radius}px, -${pegs[i].radius}px)`;
+
+    background.appendChild(peg);
+
+  }
+}
+
+function updateLevel() {
+  let newPegs = [];
+  for(let i = 0; i < pegs.length; i++){
+    if(pegs[i].hit){
+      //Remove the peg
+      
+      let elementPeg = document.getElementById(`peg-${pegs[i].id}`);
+      if(elementPeg){
+      elementPeg.remove(); 
+      pegs.splice(i,1);
+      i--;
+      }
+    }
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 /*----------------MOUSE MOVEMENT ------------------*/
@@ -15,6 +59,34 @@ const topMid = {x: middleOfScreen().midX, y: 80 }
 arrow.style.left = topMid.x + 'px';
 arrow.style.top = topMid.y +'px';
 arrow.style.transform = `translateY(-50%)`;
+
+// Level declaration and design (maybe store them in a separate file)
+const level1 = {pegs : []};
+let level1Radius = 10;
+let rad = 100;
+let rows = 5;
+let columns = 10;
+let add = 70;
+let base = {x: 400, y: 400}
+//level1.pegs.push({position: {x: middleOfScreen().midX, y: middleOfScreen().midY }, radius: level1Radius})
+for(let i = 0; i < rows; i++){
+  if(i % 2 == 0){
+    base.x = 400;
+    //add = add + add/2;
+  } else{
+    base.x = 430;
+    //add = 70;
+  }
+  for(let j = 0; j < columns; j++ ) {
+   
+    level1.pegs.push({position: {x: base.x + j*add, y: base.y + i*60 }, radius: level1Radius})
+  }
+  //level1.pegs.push({position: {x: middleOfScreen().midX + 100*Math.cos(10*i), y: middleOfScreen().midY + 100*Math.sin(10*i)}, radius: level1Radius})
+}
+
+
+setUpLevel(level1);
+console.log(pegs)
 
 function getArrowAngle() {
   let xDiff = mouse.x - topMid.x;
@@ -35,12 +107,32 @@ function getArrowAngle() {
 }
 
 document.addEventListener('mousemove', (event) => {
+
+
   arrow.style.opacity = '1'
   mouse = mouseMovement(event);
   let xDiff = mouse.x - topMid.x;
   let yDiff = mouse.y - topMid.y;
 
   let arrowAngle = getArrowAngle();
+
+/*  Mouse Logging  */
+//console.log(mouse); 
+/*if(collision(mouse,pegs[0].position,0,pegs[0].radius)){
+  //console.log(pegs[0].radius)
+  let thePeg = document.getElementById('peg-0');
+  if(!thePeg.classList.contains('collision')){
+    thePeg.classList.add('collision')
+  }
+  //console.log("MOUSE COLLISION AT: ",mouse )
+  console.log("pegPos:",pegs[0].position)
+} else{
+  let thePeg = document.getElementById('peg-0')
+  if(thePeg.classList.contains('collision')){
+    thePeg.classList.remove('collision')
+  }
+}*/
+
 
   const translationLimit = 200;
   let translation = distance(mouse,topMid);
@@ -87,7 +179,7 @@ function addBall() {
 
   // Godot checkout
   
-  const ballRadius = 17;
+  const ballRadius = 10;
   const ballThickness = 3;
   const ballWeight = 3;
   const ballEnergyConservation = 0.5;
@@ -96,7 +188,7 @@ function addBall() {
   let ball = document.createElement('div');
   ball.setAttribute('id', `ball-${ballCounter}`);
   ball.classList.add('ball');
-
+  
   ball.style.width = 2*ballRadius + 'px';
   ball.style.height = 2*ballRadius + 'px'; 
   ball.style.border = ballThickness + "px solid white";
@@ -153,11 +245,16 @@ const damping = 0.0001;
 const frictionCoefficient = 0.7;
 const scaleCoefficient = 0.0001;
 
+
+
+
 function tick() {
   for(let i = 0; i < balls.length; i++){
 
-//balls[i].position.x = mouse.x - balls[i].radius;
-//balls[i].position.y = mouse.y - balls[i].radius;
+ 
+
+    //balls[i].position.x = mouse.x - balls[i].radius;
+    //balls[i].position.y = mouse.y - balls[i].radius;
 
     balls[i].leftLimit  = { x: balls[i].position.x, y: balls[i].position.y + balls[i].radius };
     balls[i].rightLimit = { x: balls[i].position.x + 2 * balls[i].radius, y: balls[i].position.y + balls[i].radius };
@@ -196,8 +293,86 @@ function tick() {
     */
 
     let ballMidpoint = {x: balls[i].position.x + balls[i].radius, y: balls[i].position.y + balls[i].radius };
+       //Check ball collision with pegs
+       for(let j = 0; j < pegs.length; j++){
+        //Check for each peg if the ball has collided with the peg
+        
+        if(collision(ballMidpoint,pegs[j].position,balls[i].radius,pegs[j].radius)){
+        //Make element show it is hit
+        let pegElement = document.getElementById(`peg-${pegs[j].id}`)
+        pegElement.style.background = 'white'//"rgba(1,1,1,1)";
+        pegs[j].hit = true;
+        //Calculate new force and such
+        let velocityArray = [balls[i].velocity.x, balls[i].velocity.y]  
+        let normalMagnitude = distance(ballMidpoint, pegs[j].position); 
+        let normalDirection = {x: (ballMidpoint.x - pegs[j].position.x) / normalMagnitude, y: (ballMidpoint.y - pegs[j].position.y) / normalMagnitude}
+        
+        let velocityDirection = {x: balls[i].velocity.x / math.norm(velocityArray), y:balls[i].velocity.y / math.norm(velocityArray)}
+
+        //console.log(normalDirection)
+          //If ball inside the peg
+         if(distance(ballMidpoint, pegs[j].position) < (balls[i].radius + pegs[j].radius)) {
+            //Move ball to edge of peg
+            //balls[i].position.x = pegs[j].position.x + normalDirection.x * (pegs[j].radius + balls[i].radius);
+            //balls[i].position.y = pegs[j].position.y + normalDirection.y * (pegs[j].radius + balls[i].radius);
+            //Move the ball backwards
+          }
+            let backStep = 0.1;
+            
+              while(distance(ballMidpoint, pegs[j].position) < (balls[i].radius + pegs[j].radius)){
+                balls[i].position.x = balls[i].position.x - velocityDirection.x*backStep;
+                balls[i].position.y = balls[i].position.y - velocityDirection.y*backStep;
+                ballMidpoint = {x: balls[i].position.x + balls[i].radius, y: balls[i].position.y + balls[i].radius };
+              }
+          
+    
+      
+        //Convert them to array
+        let normalArray = [normalDirection.x, normalDirection.y];
+
+        let up = [0,1];
+        let normalAngle = (Math.acos((math.dot(up,normalArray))/(math.norm(up)*math.norm(normalArray))) - Math.PI)*(normalDirection.x/Math.abs(normalDirection.x)*-1);
+
+        //Find angle between normal and incline angle for reflection angle
+        let angleDiff = Math.acos((math.dot(normalArray,velocityArray))/(math.norm(normalArray)*math.norm(velocityArray)))*-1*(normalDirection.x/Math.abs(normalDirection.x))
+        //console.log(angleDiff * (180/Math.PI))
+        //Divide components with length
+        //Normalize the velocity vector to calculate bounce direction and such.
+
+        const rotationMatrix = math.matrix([
+          [Math.cos(angleDiff), -Math.sin(angleDiff)],
+          [Math.sin(angleDiff), Math.cos(angleDiff)]
+        ]);
+
+        
+        
+        // Rotate the vector using the rotation matrix
+        let newVelocity = math.multiply(rotationMatrix, velocityArray);
+        //console.log(force)
+        //console.log(newVelocity._data[0],newVelocity._data[1]);
+        balls[i].velocity.x = newVelocity._data[0]*Math.sqrt(balls[i].energyConservation);
+        momentumAfter.x = balls[i].velocity.x*balls[i].weight;
+        force.x += (momentumAfter.x - momentum.x)/bounceTime;
+
+        balls[i].velocity.y = newVelocity._data[1]*Math.sqrt(balls[i].energyConservation);
+        momentumAfter.y = balls[i].velocity.y*balls[i].weight;
+        force.y += (momentumAfter.y - momentum.y)/bounceTime;
+        //console.log(force);
+        //balls[i].velocity = {x: 0, y: 0};
+        }
+  
+      }
+    
+    
+    
+    
     // Check if any of the sides have collided with the viewport edges (Maybe better way of doing this later?)
   
+
+
+
+
+
     if(collision(ballMidpoint, mirrorImageLeft, balls[i].radius, 0)) {
       // Collided with the left wall
       balls[i].velocity.x = -balls[i].velocity.x*Math.sqrt(balls[i].energyConservation);
@@ -224,7 +399,7 @@ function tick() {
       balls[i].velocity.y = -balls[i].velocity.y*Math.sqrt(balls[i].energyConservation);
       momentumAfter.y = balls[i].velocity.y*balls[i].weight;
       force.y += (momentumAfter.y - momentum.y)/bounceTime;
-    } else if(collision(ballMidpoint, mirrorImageBottom, balls[i].radius, 0)) {
+    } /*else if(collision(ballMidpoint, mirrorImageBottom, balls[i].radius, 0)) {
       // Collided with the bottom wall
       // Calculate the new velocity in accordance with the formula above:
       balls[i].velocity.y = -balls[i].velocity.y*Math.sqrt(balls[i].energyConservation);
@@ -232,7 +407,7 @@ function tick() {
       force.y += (momentumAfter.y - momentum.y)/bounceTime;
       
 
-    } else {
+    } */else {
       // Calculate vertical acceleration accordingly
     }
     // Always apply gravity
@@ -246,7 +421,7 @@ function tick() {
 
     // Making check so that balls arent outside of the walls
     if(balls[i].position.y + 2*balls[i].radius > screenHeight) {
-      balls[i].position.y = screenHeight - 2*balls[i].radius;
+      //balls[i].position.y = screenHeight - 2*balls[i].radius;
     } else if(balls[i].position.y < 0) {
       balls[i].position.y = 0;
     }
@@ -256,7 +431,7 @@ function tick() {
       balls[i].position.x = 0;
     }
 
-
+  
 
     balls[i].position.x = balls[i].position.x + balls[i].velocity.x*dt
     balls[i].position.y = balls[i].position.y + balls[i].velocity.y*dt
@@ -264,9 +439,17 @@ function tick() {
     // Setting visual representation
     balls[i].element.style.top = balls[i].position.y + 'px';
     balls[i].element.style.left = balls[i].position.x + 'px';
+    if(outsideY(balls[i].position)){
+      //remove the ball
+      balls.length = 0;
+      updateLevel();
+      console.log('updated level')
+      console.log(pegs)
+    }
   }
   //console.log(pointInsideViewport(mouse));
   //More things that are executed every tick
+
 }
 
 // Start the interval
