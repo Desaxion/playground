@@ -8,13 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //const math = require('..')
-function setupGame(){
+function setupGame() {
+
+  
+
   let newGameSpace = document.createElement('div');
   newGameSpace.setAttribute('id','gamespace');
   let back = document.getElementById('background');
   back.appendChild(newGameSpace); 
-  let balls = [];
   let pegs = [];
+  let balls = [];
+  let gamePlaying = true;
+
+
+
   const pegThickness = 2;
   const startupLives = 10;
   let lives = startupLives;
@@ -23,7 +30,8 @@ function setupGame(){
       let tempPeg = { position: level.pegs[i].position, hit: false, radius: level.pegs[i].radius, id: i }
       pegs.push(tempPeg)
     }
-  
+
+
     //Make the pegs visible
     for(let i = 0; i < pegs.length; i++){
       let peg = document.createElement('div');
@@ -79,6 +87,61 @@ function setupGame(){
   
   let gameSpaceBottomEdge = gamespace.offsetTop + screenHeight;
   
+
+
+  let gameInfoBar = document.createElement('div');
+  
+  gameInfoBar.style.position = 'absolute';
+  gameInfoBar.style.top = gamespace.offsetTop / 2  /*(screenHeight) */+ 'px';
+  gameInfoBar.style.left =  gamespace.offsetLeft + 'px';
+  gameInfoBar.style.minHeight = 'max-content';
+  gameInfoBar.style.minWidth = gamespace.clientWidth + 'px';
+  //gameInfoBar.style.padding = '10px';
+  gameInfoBar.style.display = 'flex';
+  gameInfoBar.style.flexDirection = 'row';
+  gameInfoBar.style.justifyContent = 'space-between';
+
+  let ballContainer = document.createElement('div');
+  for(let i = 0; i < lives; i++){
+    tempBall = document.createElement('div');
+    tempBall.classList.add('ball')
+    tempBall.setAttribute('id',`ball-life-${i}`)
+    tempBall.style.opacity = "1";
+    tempBall.style.width = '15px'
+    tempBall.style.height = '15px'
+    tempBall.style.position = 'relative'
+    tempBall.style.margin = '0 0 0 3px'
+    
+    ballContainer.appendChild(tempBall)
+    
+  }
+  ballContainer.style.minWidth = 'max-content';
+  ballContainer.style.minHeight = 'max-content';
+  ballContainer.style.display = 'flex';
+  ballContainer.style.flexDirection = 'row';
+
+  let score = 0;
+
+  let scoreBoard = document.createElement('h3');
+  scoreBoard.classList.add('gameText');
+  scoreBoard.style.margin = '0px';
+  scoreBoard.textContent = score;
+  gameInfoBar.appendChild(scoreBoard);
+  gameInfoBar.appendChild(ballContainer);
+  gamespace.appendChild(gameInfoBar)
+  // gameInfoBar.style.transform = 'translateY(-100%)';
+ 
+ /*let gameSpaceLeftEdge =;
+ 
+  let gameSpaceRightEdge = gamespace.offsetLeft + screenWidth;
+ 
+  let gameSpaceTopEdge = gamespace.offsetTop;
+ 
+  let gameSpaceBottomEdge = gamespace.offsetTop + screenHeight;
+ */
+
+
+
   //console.log(gamespace)
   let mouse = {x: 0, y: 0};
   
@@ -138,7 +201,7 @@ function setupGame(){
   
   document.addEventListener('mousemove', (event) => {
   
-  
+  if(gamePlaying) {
     arrow.style.opacity = '1'
     mouse = mouseMovement(event);
     let xDiff = mouse.x - topMid.x;
@@ -171,6 +234,7 @@ function setupGame(){
     //Make arrow stay inside gamespace
   
     arrow.style.transform = `translateY(-50%) rotate(${arrowAngle}rad) translateY(-${translation}px) translateY(100%)`
+  }
   })
   /*-----------CALCULATE MIDDLE OF SCREEN-----------*/
   function middleOfScreen() {
@@ -190,7 +254,8 @@ function setupGame(){
   
   
   
-  // Remove all balls if the right click is hit
+  // Remove all balls if the right click is hit (Disabled atm)
+  /*
   document.addEventListener("contextmenu", function(event) {
     // Prevent the default context menu from showing up
     event.preventDefault();
@@ -199,8 +264,12 @@ function setupGame(){
     ballCounter = 0;
     balls.length = 0;
   });
-  
+  */
+
   //Eventlistener to the document of adding divs.
+//This is to keep track of score. Set to 10000 just to make sure it doesnt begin as the same as ballcounter
+  let ballCount = 10000;
+
   let ballCounter = 0;
   //const gamespace = document.getElementById('gamespace')
   
@@ -254,16 +323,24 @@ function setupGame(){
     addedBall.style.opacity = '1'
     
     ballCounter++;
-  
+    
+ 
+
   }
   
   document.addEventListener('click', () => {
-    if(balls.length == 0 && lives != 0) {
+    if(balls.length == 0 && lives != 0 && gamePlaying) {
     addBall();
+    lives -= 1;
     //remove one ball life
+    document.getElementById(`ball-life-${ballCounter - 1}`).remove();
+
     }
     })
-  
+
+
+ 
+
   function mouseMovement(event) {
     var x = event.clientX;
     var y = event.clientY;
@@ -279,15 +356,17 @@ function setupGame(){
   const damping = 0.0001;
   const frictionCoefficient = 0.7;
   const scaleCoefficient = 0.0001;
-  
+
   
   
   
   function tick() {
+
+    let additionalSum = 50;
     for(let i = 0; i < balls.length; i++){
-  
+
    
-  
+
       //balls[i].position.x = mouse.x - balls[i].radius;
       //balls[i].position.y = mouse.y - balls[i].radius;
   
@@ -334,9 +413,12 @@ function setupGame(){
           
           if(collision(ballMidpoint,pegs[j].position,balls[i].radius,pegs[j].radius)){
           //Make element show it is hit
+
+       
+
           let pegElement = document.getElementById(`peg-${pegs[j].id}`)
           pegElement.style.background = 'white'//"rgba(1,1,1,1)";
-          pegs[j].hit = true;
+          
           //Calculate new force and such
           let velocityArray = [balls[i].velocity.x, balls[i].velocity.y]  
           let normalMagnitude = distance(ballMidpoint, pegs[j].position); 
@@ -394,7 +476,26 @@ function setupGame(){
           force.y += (momentumAfter.y - momentum.y)/bounceTime;
           //console.log(force);
           //balls[i].velocity = {x: 0, y: 0};
+     
+
+          let sameBall = false;
+          if(ballCount != ballCounter) {
+            ballCount = ballCounter;
+          } else if(ballCount == ballCounter) {
+            sameBall = true;
           }
+
+          // MAke this work
+          if(sameBall){
+            additionalSum += 25;
+          }
+          if(!pegs[j].hit){
+          score += additionalSum;
+
+          pegs[j].hit = true;
+          }
+          }
+
     
         }
       
@@ -465,52 +566,85 @@ function setupGame(){
       } else if (balls[i].position.x < gameSpaceLeftEdge) {
         balls[i].position.x = gameSpaceLeftEdge;
       }
-  
-    
-  
+
       balls[i].position.x = balls[i].position.x + balls[i].velocity.x*dt
       balls[i].position.y = balls[i].position.y + balls[i].velocity.y*dt
-  
-      // Setting visual representation
-      balls[i].element.style.top = balls[i].position.y + 'px';
-      balls[i].element.style.left = balls[i].position.x + 'px';
-  
+
       if(outsideYBottom(balls[i].position)){
         //Not working correctly, fix outsideX and outsideY functions
         balls[i].element.style.opacity = '0';
-      }
-  
-      if(outsideYBottom(balls[i].position)){
+        balls[i].element.remove();
         //remove the ball
         balls.length = 0;
         updateLevel();
-        //console.log('updated level')
-        //console.log(pegs)
-        console.log(pegs.length)
+
         if(pegs.length == 0) {
-        let score = 0;
+        gamePlaying = false;
+
         let winnerText = document.createElement('h2');
+        winnerText.classList.add('gameText');
         let scoreText = document.createElement('h4');
+        scoreText.classList.add('gameText');
         let replayButton = document.createElement('button');
         winnerText.textContent = 'You win!';
         scoreText.textContent = 'Score: ' + score;
         replayButton.textContent = 'Play again';
   
-        document.getElementById('shoot-arrow').style.opacity = 0;
-  
+        let arrow =  document.getElementById('shoot-arrow').style.opacity = 0;
         gamespace.appendChild(winnerText);
         gamespace.appendChild(scoreText);
         gamespace.appendChild(replayButton);
   
+
+
         replayButton.addEventListener('click', (event) => {
           event.preventDefault(); // prevent the event from propagating upwards! (not working)
+          clearGame();
+          setupGame();
+          //restart(level1);
+        })
+        }
+        if(lives == 0){
+          gamePlaying = false;
+
+        let winnerText = document.createElement('h2');
+        winnerText.classList.add('gameText');
+        let scoreText = document.createElement('h4');
+        scoreText.classList.add('gameText');
+        let replayButton = document.createElement('button');
+        winnerText.textContent = 'Game Over!';
+        scoreText.textContent = 'You ran out of lives!';
+        replayButton.textContent = 'Play again';
+  
+        let arrow =  document.getElementById('shoot-arrow').style.opacity = 0;
+        gamespace.appendChild(winnerText);
+        gamespace.appendChild(scoreText);
+        gamespace.appendChild(replayButton);
+  
+
+
+        replayButton.addEventListener('click', (event) => {
+          event.preventDefault(); // prevent the event from propagating upwards! (not working)
+          clearGame();
+          setupGame();
           //restart(level1);
         })
         }
       }
+
+      if(balls.length > 0){
+      balls[i].element.style.top = balls[i].position.y + 'px';
+      balls[i].element.style.left = balls[i].position.x + 'px';
+    }
+
+
     }
     //console.log(pointInsideViewport(mouse));
     //More things that are executed every tick
+    //updating score text
+    scoreBoard.textContent = score;
+    gameInfoBar.style.top = gamespace.offsetTop / 2  /*(screenHeight) */+ 'px';
+    gameInfoBar.style.left =  gamespace.offsetLeft + 'px';
   
   }
   
@@ -553,7 +687,11 @@ function setupGame(){
   
   
   function clearGame() {
-  
+    gamespace.remove();
+    pegs.length = 0;
+    balls.length = 0;
+
+
   }
   
   

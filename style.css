@@ -4,6 +4,8 @@
     font-family: 'IBM Plex Mono';
     src: url('IBM_Plex_Mono/IBMPlexMono-Regular.ttf') format('truetype');
     /* Add more formats if needed */
+    font-family: 'Pixel_NES';
+    src: url('Pixel_NES/Pixel_NES.otf') format('opentype')
   }
 
 html, body {
@@ -58,6 +60,12 @@ button:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+ /*position:absolute;*/
+}
+
+.gameText {
+  font-family: 'Pixel_NES';
+  font-weight: 100;
 }
 
 /*---------- PACHINKO -------------*/

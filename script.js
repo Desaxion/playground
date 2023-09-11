@@ -1,5 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
 
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
 
 let title = document.getElementsByClassName("name");
 console.log(title);
@@ -43,10 +46,6 @@ for(let i = 0; i < title.length; i++){
         });
     })
     
-    
 }
-
-
-
 
 });
