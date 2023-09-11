@@ -328,7 +328,7 @@ function setupGame() {
 
   }
   
-  document.addEventListener('click', () => {
+  gamespace.addEventListener('click', () => {
     if(balls.length == 0 && lives != 0 && gamePlaying) {
     addBall();
     lives -= 1;
