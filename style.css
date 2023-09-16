@@ -15,7 +15,14 @@ html, body {
   overflow: hidden;
   color: white;
 }
+body ul h4{
+  font-weight:100;
+  font-size: 16pt;
+  margin: 0;
+}
 button {
+  display: flex;
+  flex-direction: row;
   font-family: 'IBM Plex Mono';
   padding: 10px;
   border-radius: 3px;
@@ -23,6 +30,10 @@ button {
   color: white;
   background: rgba(0,0,0,0);
   transition: background 0.1s ease;
+  max-height:max-content;
+}
+#pdf-button {
+  max-height: 40px;
 }
 
 button:hover {
@@ -40,16 +51,128 @@ button:hover {
 }
 #body {
   display: flex;
-  justify-content:center;
+  /*justify-content:center;*/
   align-items: center;
   color: white;
   position: relative;
+  flex-direction: column;
 }
 #body .name{
-  cursor: grab;
-  position: absolute;
+  /*cursor: grab;
+  position: absolute;*/
+  font-size: 16pt;
+  font-weight: 100;
+  min-width: max-content;
 }
 
+#side_menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#side_menu li {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+#side_menu li h4:after {
+  display:block;
+  content: "";
+  background: white;
+  height: 1px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+#side_menu li:hover h4:after {
+  width: 33%;
+}
+
+#side_menu li#games {
+  margin-top: 50px;
+}
+
+.visible {
+  display:flex;
+  flex-direction: column;
+}
+
+.game-button{
+  display: flex;
+  flex-direction:row;
+}
+
+.invisible {
+  display: none;
+}
+
+#titleBox {
+  position: relative;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#contentWrapper {
+  /*min-width: 75%;*/
+  display:flex;
+  flex-direction: row;
+
+}
+#contentBox {
+  width: 50vw;
+  padding-left: 50px;
+  display:flex;
+  flex-direction: column;
+  /*justify-content: center;*/
+  align-items: center;
+}
+
+.content-title{
+  font-weight: 100;
+  font-size: 15pt;
+  margin-top: 0;
+}
+
+.curriculum-list {
+  list-style:none;
+}
+#curriculum-title{
+  display:flex;
+  justify-content: space-between;
+  flex-direction:row;
+  align-items: center;
+}
+.curriculum-entry{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction:column;
+  margin-bottom: 20px;
+}
+.content p{
+  margin:2px;
+}
+
+.content p.minor{
+  font-size: 10pt;
+}
+
+.game-title {
+  font-weight: 100;
+  font-size: 14pt;
+  font-family:'Pixel_NES';
+}
+
+.divider::after {
+  content: "";
+  background:white;
+  min-width: 37%;
+  max-width: 37%;
+  height: 1px;
+  display:flex;
+
+}
 #gamespace {
   border: 1px solid white;
   min-width: 75%;
@@ -61,6 +184,10 @@ button:hover {
   align-items: center;
   flex-direction: column;
  /*position:absolute;*/
+}
+
+.game-entry-content .game-description {
+margin-bottom: 20px;
 }
 
 .gameText {
@@ -104,7 +231,37 @@ button:hover {
   transform: translate(5.2px,-6px) rotate(-45deg);
   background:white;
 }
+.arrowIcon {
+  display:block;
+  width: 10px;
+  height: 10px;
+  border-style: none solid solid none;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 1px;
+  transform: rotate(-45deg) translateY(2px) translateX(-2px);
+  transition: border-color 0.1s ease, transform 0.5s ease;
+}
+button:hover .arrowIcon {
+  border-color: #02001f;
+  transform:rotate(-45deg) translateY(4px) translateX(0px);
+}
 
+.arrowBackIcon {
+  display:block;
+  width: 10px;
+  height: 10px;
+  border-style: solid none none solid;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 1px;
+  transform: rotate(-45deg) translateY(2px) translateX(-2px);
+  transition: border-color 0.1s ease, transform 0.5s ease;
+}
+button:hover .arrowBackIcon {
+  border-color: #02001f;
+  transform:rotate(-45deg) translateY(0px) translateX(-4px);
+}
 
 /*---------- SPECIFIC ----------*/
 #name-holder {
@@ -113,18 +270,47 @@ button:hover {
   left:50%;
   color: white;
 }
-
+#background-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200vw;
+  height: 100vh;
+  background-color: #02001f;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  transition: 0.5s ease;
+}
 #background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #02001f;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  overflow:scroll;
+
+}
+#second-page{
+  position: absolute;
+  top: 0;
+  left: 100vw;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  
 }
+#game-area  {
+  width:100%;
+  height: 100%;
+}
+
 
 .ball {
   position: absolute;
@@ -145,3 +331,4 @@ button:hover {
 .peg.collision {
   background: red;
 }
+

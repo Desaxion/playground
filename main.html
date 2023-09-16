@@ -7,13 +7,88 @@
     <link rel="icon" href="paw.svg">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>    
     <script src="pachinko.js"></script>
+    <script src="script.js"></script>
+
 </head>
 <body>
+    <div id="background-wrapper">
     <div id="background">
-        <div id="body"><!--<h4 class="name">Johan</h4><h4 class="name">Björnfoot</h4>--></div>
+        <div id="body">
+            <div id="titleBox">
+                <!--<h4 class="name">Johan</h4><h4 class="name">Björnfoot</h4>-->
+                <h4 class="name">Johan Björnfoot</h4>
+            </div>
+            <div id="contentWrapper">
+                <ul id="side_menu">
+                    <li id="about"><h4>about</h4></li>
+                    <li id="curriculum"><h4>curriculum</h4></li>
+                    <li id="projects"><h4>projects</h4></li>
+                    <li id="contact"><h4>contact</h4></li>
+                    <li id="games"><h4>games</h4></li>
+                </ul>
+                <div id="contentBox">
+                 <div id="about-content" class="content visible"><h4 class="content-title">About this website</h4>
+                    <p>Hey there! I'm so glad you found my web page.<br><br> 
+                        My name is Johan, and I am 25 years old and live at the moment in Linköping, Sweden. This here is my website that I mainly use for posting my projects that I make in my spare time, but it also serves as sort of a resume for me. Please, look around and let me know if you found something you did or didn't like. 
+                        
+                    </p>
+                </div>
+                 <div id="curriculum-content" class="content invisible">
+                    <div id="curriculum-title"><h4 class="content-title">Curriculum Vitae</h4><button id="pdf-button">Download as .pdf</button></div>
 
+                    <div id="education" ></div>
+                        <p class="divider">Education</p>
+                        <ul id="education-list" class="curriculum-list">
+                            <li><div class="curriculum-entry"><p>Masters degree in Media Technology</p><p class="minor">Linköping University</p><p>2022 - </p></div></li>
+                            <li><div class="curriculum-entry"><p>Bachelors degree in Media Technology</p><p class="minor">Linköping University</p><p>2019 - 2022</p></div></li>
+                            <li><div class="curriculum-entry"><p>Technical Preporatory Year</p><p class="minor">Chalmers University of Technology</p><p>2018 - 2019</p></div></li>
+                            <li><div class="curriculum-entry"><p>High School, Orientation in Natural Sciences</p><p class="minor">Linköping University</p><p>2014 - 2017</p></div></li>
+                        </ul>
+                    <div id="experience" >
+                        <p class="divider">Experience</p>
+                        <ul id="experience-list" class="curriculum-list">
+                            <li><div class="curriculum-entry"><p>Software Developer</p><p class="minor">Exsitec AB</p><p>Summer 2023</p></div></li>
+                            <li><div class="curriculum-entry"><p>Kitchen Sales Co-Worker</p><p class="minor">IKEA</p><p>2020 - 2023</p></div></li>
+                            <li><div class="curriculum-entry"><p>Alarm operator</p><p class="minor">Sector Alarm</p><p>Summer 2019</p></div></li>
+                            <li><div class="curriculum-entry"><p>Store Clerk</p><p class="minor">Pressbyrån Sahlgrenska Centralkomplexet</p><p>2017 - 2019</p></div></li>
+                        </ul>
+                    </div>    
+                    <div id="software" >
+                        <p class="divider">Software knowledge</p>
+                        <ul id="software-list" class="curriculum-list">
+                            <li><div class="curriculum-entry"><p>Great knowledge in C++, HTML, JavaScript and CSS</p></div></li>
+                            <li><div class="curriculum-entry"><p>Some knowledge in react, node, Java and Python</p></div></li>
+                            <li><div class="curriculum-entry"><p>Has worked with OpenGL and WebGL</p></div></li>
+                            <li><div class="curriculum-entry"><p>Great knowledge and experience working in Adobe CC</p></div></li>
+                        </ul>
+                    </div> 
+                    <div id="other" >
+                        <p class="divider">Other</p>
+                        <ul id="other-list" class="curriculum-list">
+                            <li><div class="curriculum-entry">Speaks swedish and english fluently</div></li>
+                            <li><div class="curriculum-entry">Has swedish driving license</div></li>
+                            <li><div class="curriculum-entry">Likes really good puns!</div></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            
+                <div id="project-content" class="content invisible"> This is projecotot contento</div>
+                <div id="contact-content" class="content invisible"> This is Contactictontct contento</div>
+                <div id="games-content" class="content invisible"> 
+                <h4 class="content-title">Games</h4>
+                <div class="game-entry"><h5 class="game-title">Pachinko</h5><div class="game-entry-content"><p class="game-description minor">Inspired by the japanese mechanical game with the same name (パチンコ), this game is about bouncing balls on all pegs on the game board. You win when all pegs are gone or you lose when you're out of balls. Try bouncing the ball on multiple pegs in the same shot, that will result in combo points!</p>
+                <button id="pachinko-button" class="game-button">Play<i class="arrowIcon"></i></button>
+                </div></div>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div><!--- Here ends the bakcground --->
+        <div id="second-page"><div id="game-area"></div><button id="back-button"><i class="arrowBackIcon"></i>Go back</button></div>
     </div>
+
     </body>
 </html>

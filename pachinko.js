@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-  setupGame();
+
+  let playButton = document.createElement('button');
+  playButton.textContent = 'Play Pachinko';
+  document.getElementById('game-area').appendChild(playButton);
+  playButton.addEventListener('click', () => {
+    setupPachinko();
+    playButton.remove();
+  })
+
+
+
 })
 
 
@@ -8,13 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //const math = require('..')
-function setupGame() {
+function setupPachinko() {
 
-  
+  const goBackButton = document.getElementById('back-button')
+  //Remove if connected to any other game
+  goBackButton.addEventListener('click', () => {
+      clearPachinko();
+  }, {once:true})
+    
 
   let newGameSpace = document.createElement('div');
   newGameSpace.setAttribute('id','gamespace');
-  let back = document.getElementById('background');
+  let back = document.getElementById('game-area');
   back.appendChild(newGameSpace); 
   let pegs = [];
   let balls = [];
@@ -599,14 +614,20 @@ function setupGame() {
 
         replayButton.addEventListener('click', (event) => {
           event.preventDefault(); // prevent the event from propagating upwards! (not working)
-          clearGame();
-          setupGame();
+          clearPachinko();
+          setupPachinko();
           //restart(level1);
         })
         }
         if(lives == 0){
           gamePlaying = false;
-
+        
+        //Remove all pegs
+        for(let i = 0; i < pegs.length; i++){
+          document.getElementById(`peg-${i}`).remove();
+        }
+        
+        pegs.length = 0;
         let winnerText = document.createElement('h2');
         winnerText.classList.add('gameText');
         let scoreText = document.createElement('h4');
@@ -625,8 +646,8 @@ function setupGame() {
 
         replayButton.addEventListener('click', (event) => {
           event.preventDefault(); // prevent the event from propagating upwards! (not working)
-          clearGame();
-          setupGame();
+          clearPachinko();
+          setupPachinko();
           //restart(level1);
         })
         }
@@ -686,11 +707,19 @@ function setupGame() {
   
   
   
-  function clearGame() {
+  function clearPachinko() {
     gamespace.remove();
     pegs.length = 0;
     balls.length = 0;
 
+    let playButton = document.createElement('button');
+    playButton.textContent = 'Play Pachinko';
+    document.getElementById('game-area').appendChild(playButton);
+    playButton.addEventListener('click', () => {
+      setupPachinko();
+      playButton.remove();
+    })
+  
 
   }
   
