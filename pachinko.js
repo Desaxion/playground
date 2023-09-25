@@ -13,15 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 
-
-
-
-
-//const math = require('..')
-function setupPachinko(replay) {
-
-  
-  
+function setupPachinko(replay) { 
 
   const goBackButton = document.getElementById('back-button')
   goBackButton.addEventListener('click', () => {
@@ -178,13 +170,33 @@ function setupPachinko(replay) {
   const level1 = {pegs : []};
   let level1Radius = 10;
   let rad = 100;
+  let sinWeight = 100;
   let rows = 5;
   let columns = 10;
   let add = 70;
   let base = {x: 400, y: 400}
+  let clusters = 5;
+  let clusterStep = screenWidth / (clusters +1);
+  let clusterRadius = 80;
+  //let clusterPosition = {x: clusterStep, y: screenHeight / 2};
+
+  for(let i = 0; i < clusters; i++){
+    let clusterPosition = {x: gameSpaceLeftEdge + clusterStep + i*clusterStep, y: gameSpaceTopEdge +  (screenHeight / 2) + sinWeight*Math.sin(Math.PI* (i + 1/clusters))}
+    console.log(Math.sin(Math.PI* (i/clusters)))
+    for(let j = 0; j < rows; j++){
+    console.log(j/rows*2*Math.PI,j/rows*2*Math.PI*57.2957795)
+//console.log(j/rows)
+     //console.log(Math.cos((j/rows)*Math.PI*2),Math.sin((j/rows)*Math.PI*2))
+      level1.pegs.push({position: {x: clusterPosition.x + clusterRadius*Math.cos((j/rows)*Math.PI*2), y: clusterPosition.y + clusterRadius*Math.sin((j/rows)*Math.PI*2)}, radius: level1Radius})
+      //level1.pegs.push({position: {x: clusterPosition.x , y: clusterPosition.y}, radius: level1Radius})
+    }
+  }
+
+
   //level1.pegs.push({position: {x: middleOfScreen().midX, y: middleOfScreen().midY }, radius: level1Radius})
-  for(let i = 0; i < rows; i++){
-   /* if(i % 2 == 0){
+
+ /* for(let i = 0; i < rows; i++){
+    /*if(i % 2 == 0){
       base.x = 400;
       //add = add + add/2;
     } else{
@@ -195,8 +207,13 @@ function setupPachinko(replay) {
      
       level1.pegs.push({position: {x: base.x + j*add, y: base.y + i*60 }, radius: level1Radius})
     }*/
-    level1.pegs.push({position: {x: middleOfScreen().midX + 100*Math.cos(10*i), y: middleOfScreen().midY + 100*Math.sin(10*i)}, radius: level1Radius})
-  }
+    
+    //level1.pegs.push({position: {x: middleOfScreen().midX + 100*Math.cos(10*i), y: middleOfScreen().midY + 100*Math.sin(10*i)}, radius: level1Radius})
+    
+
+
+
+  //}
   
   
   setUpLevel(level1);
@@ -592,7 +609,7 @@ function setupPachinko(replay) {
       balls[i].position.y = balls[i].position.y + balls[i].velocity.y*dt
 
       if(outsideYBottom(balls[i].position)){
-        //Not working correctly, fix outsideX and outsideY functions
+
         balls[i].element.style.opacity = '0';
         balls[i].element.remove();
         //remove the ball
@@ -619,7 +636,7 @@ function setupPachinko(replay) {
 
 
         replayButton.addEventListener('click', (event) => {
-          event.preventDefault(); // prevent the event from propagating upwards! (not working)
+          event.preventDefault(); // prevent the event from propagating upwards! 
           clearPachinko();
           setupPachinko(true);
           //restart(level1);
@@ -627,19 +644,13 @@ function setupPachinko(replay) {
         } else if(lives == 0){
           gamePlaying = false;
         
-        //Remove all pegs
-        /*for(let i = 0; i < pegs.length; i++){
-          document.getElementById(`peg-${i}`).remove();
-        }*/
+ 
         let pegElements = document.getElementsByClassName('peg');
 
-        //Doesnt work? Why? Async?
-        for(let i = 0; i < pegElements.length; i++){
-          document.getElementById(`${pegElements[i].id}`).remove();
+        //Remove all pegs
+        while(pegElements.length != 0) {
+          pegElements[pegElements.length - 1].remove();
         }
-
-
-
         pegs.length = 0;
         let winnerText = document.createElement('h2');
         winnerText.classList.add('gameText');
@@ -741,4 +752,4 @@ function setupPachinko(replay) {
   // To stop the interval (for example, when you want to pause the tick):
   // clearInterval(intervalID);
   
-  }
+}
