@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Björnfoot</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icons/paw.svg">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>    
+    <script src="pachinko.js"></script>
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <div id="background-wrapper">
+    <div id="background">
+        <div id="body">
+            <div id="titleBox">
+                <!--<h4 class="name">Johan</h4><h4 class="name">Björnfoot</h4>-->
+                <h4 class="name">Johan Björnfoot</h4>
+            </div>
+            <div id="contentWrapper">
+                <ul id="side_menu">
+                    <li id="about"><h4>about</h4></li>
+                    <li id="curriculum"><h4>curriculum</h4></li>
+                    <li id="projects"><h4>projects</h4></li>
+                    <li id="contact"><h4>contact</h4></li>
+                    <li id="games"><h4>games</h4></li>
+                </ul>
+                <div id="contentBox">
+                 <div id="about-content" class="content visible"><h4 class="content-title">About this website</h4>
+                    <p>Hey there! I'm so glad you found my web page.<br><br> 
+                        My name is Johan, and I am 25 years old and live at the moment in Linköping, Sweden. This here is my website that I mainly use for posting my projects that I make in my spare time, but it also serves as sort of a resume for me. Please, look around and let me know if you found something you did or didn't like. 
+                        
+                        <br><br><br>
+                        This website was made in pure HTML, CSS and JS, some of the icons under the contact tab was aquired from fontawesome. I have also used the jsPDF library to allow for downloading my curriculum as a PDF.
+                    </p>
+                </div>
+                 <div id="curriculum-content" class="content invisible">
+                    <div id="curriculum-title"><h4 class="content-title">Curriculum Vitae</h4><button id="pdf-button">Download as .pdf</button></div>
+
+                    <div id="education" ></div>
+                        <p class="divider">Education</p>
+                        <ul id="education-list" class="curriculum-list">
+                            <li><div class="curriculum-entry"><p>Masters degree in Media Technology</p><p class="minor">Linköping University</p><p>2022 - </p></div></li>
+                            <li><div class="curriculum-entry"><p>Bachelors degree in Media Technology</p><p class="minor">Linköping University</p><p>2019 - 2022</p></div></li>
+                            <li><div class="curriculum-entry"><p>Technical Preporatory Year</p><p class="minor">Chalmers University of Technology</p><p>2018 - 2019</p></div></li>
+                            <li><div class="curriculum-entry"><p>High School, Orientation in Natural Sciences</p><p class="minor">Linköping University</p><p>2014 - 2017</p></div></li>
+                        </ul>
+                    <div id="experience" >
+                        <p class="divider">Experience</p>
+                        <ul id="experience-list" class="curriculum-list">
+                            <li><div class="curriculum-entry"><p>Software Developer</p><p class="minor">Exsitec AB</p><p>Summer 2023</p></div></li>
+                            <li><div class="curriculum-entry"><p>Kitchen Sales Co-Worker</p><p class="minor">IKEA</p><p>2020 - 2023</p></div></li>
+                            <li><div class="curriculum-entry"><p>Alarm operator</p><p class="minor">Sector Alarm</p><p>Summer 2019</p></div></li>
+                            <li><div class="curriculum-entry"><p>Store Clerk</p><p class="minor">Pressbyrån Sahlgrenska Centralkomplexet</p><p>2017 - 2019</p></div></li>
+                        </ul>
+                    </div>    
+                    <div id="software" >
+                        <p class="divider">Software knowledge</p>
+                        <ul id="software-list" class="curriculum-list">
+                            <li><div class="curriculum-entry"><p>Great knowledge in C++, HTML, JavaScript and CSS</p></div></li>
+                            <li><div class="curriculum-entry"><p>Some knowledge in react, node, Java and Python</p></div></li>
+                            <li><div class="curriculum-entry"><p>Has worked with OpenGL and WebGL</p></div></li>
+                            <li><div class="curriculum-entry"><p>Great knowledge and experience working in Adobe CC</p></div></li>
+                            <li><div class="curriculum-entry"><p>Has some experience in Unreal Engine and Blender</p></div></li>
+                        </ul>
+                    </div> 
+                    <div id="other" >
+                        <p class="divider">Other</p>
+                        <ul id="other-list" class="curriculum-list">
+                            <li><div class="curriculum-entry">Speaks swedish and english fluently</div></li>
+                            <li><div class="curriculum-entry">Has swedish driving license</div></li>
+                            <li><div class="curriculum-entry">Likes really good puns!</div></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            
+                <div id="project-content" class="content invisible"> <h4 class="content-title">Projects</h4>
+                <p>Here are a few of my projects that I have been working on.</p> 
+                    <div class="project-entry"><p class="divider">Star Dwarves</p>
+                        <div class="project-entry-content"><p class="about-project">Star Dwarves was a small game I created with my classmate, in which the player controlled a small spaceship and was supposed to avoid procedurally generated obstacles. The purpose of the game was for us to learn more about computer graphics, and to learn more about game programming. The game was created in C++ and OpenGL, with libraries like GLFW and ASSIMP. The space ship model was made by me in the software BlockBench. </p><div class="project-images"><img src="images/Asteroid.png" alt="star dwarves asteroid"><img src="images/Lava.png" alt="star dwarves lava"></div></div>
+                    </div>
+                    <div class="project-entry"><p class="divider">Ray tracing</p>
+                        <div class="project-entry-content"><p class="about-project">During my first year of my master's programme I wrote my own Ray tracer in C++ for the course <span class="italic">TNCG15: Advanced Global Ilummination and Rendering</span>. The Ray tracer runs on the CPU and uses Monte-Carlo ray tracing together with Möller-Trumbore surface intersection computation techniques. The world which it renders is implicitly described, with mathematical descriptions for every surface. It also has support for either diffuse surfaces, mirror surfaces or light emissive surfaces.The final image is saved in a .ppm file. Libraries used for this project was OpenGL Mathematics, to help with vector calculations.</p><div class="project-images"><img src="images/2400x2400.png" alt="Ray Tracing"></div></div>
+                    </div>
+                    <div class="project-entry"><p class="divider">Landlord Simulator 2022</p>
+                        <div class="project-entry-content"><p class="about-project">Despite its misleading name, this project was a VR-based horror game project, created in Unreal Engine 5. The game is rather short, but was a way for me and my partners to explore how VR-games can be created, and how to incorporate immersive sounds in the game, as a lot of gameplay queues in the game are given through sound. Examples of this can be hearing where mice are in the walls to place mouse traps in the correct position, or finding which resident in the building is making too much noise. Eventually as the game progresses, it turns out the building the player is working in has a dark secret; a monster also lives in the building.</p><div class="project-images"><img src="images/finallevel.png" alt="landlord level"><img src="images/Corridor.png" alt="landlord corridor"></div></div>
+                    </div>
+                    <div class="project-entry"><p class="divider">Lego Mosaics</p>
+                        <div class="project-entry-content"><p class="about-project">To be able to reproduce images using LEGO pieces, I created a small MATLAB script that read an image file and creates an image reproduced with LEGO bricks, favoring either vertical or horizontal placement of the pieces. </p><div class="project-images"><img src="images/image1.jpeg" alt="image"><img src="images/legoImage.jpg" alt="lego image"></div></div>
+                   </div>
+                    <div class="project-entry"><p class="divider">Minecraft Shader: Vanilla Looks</p>
+                        <div class="project-entry-content"><p class="about-project">During the pandemic I played a lot of Minecraft and using our newly aqcuired knowledge of shader programming, me and a friend created a shader pack for Minecraft which we called <span class="italic">Vanilla Looks</span>. The shaderpack included shader techniques like depth of field, water reflections (based in screen space) and bloom. </p><div class="project-images"><img src="images/minecraft1.png" alt="water reflections"><img src="images/minecraft2.png" alt="DoF"></div></div>
+                    </div>
+                
+                </div>
+                <div id="contact-content" class="content invisible"> 
+                    <ul id="contact-list">
+                        <li><img src="icons/phone-solid.svg" alt="Phone icon"></img>+46 707 35 00 03</li>
+                        <li><img src="icons/envelope-solid.svg" alt="Email icon"></img>johar192@student.liu.se</li>
+                        <li><img src="icons/linkedin.svg" alt="Phone icon"></img><a href="https://www.linkedin.com/in/johan-arlinger-206204227/">LinkedIn profile</a></li>
+                    </ul>
+                </div>
+                <div id="games-content" class="content invisible"> 
+                <h4 class="content-title">Games</h4>
+                <div class="game-entry"><h5 class="game-title">Pachinko</h5><div class="game-entry-content"><p class="game-description minor">Inspired by the japanese mechanical game with the same name (パチンコ), this game is about bouncing balls on all pegs on the game board. You win when all pegs are gone or you lose when you're out of balls. Try bouncing the ball on multiple pegs in the same shot, that will result in combo points!</p>
+                <button id="pachinko-button" class="game-button">Play<i class="arrowIcon"></i></button>
+                </div></div>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div><!--- Here ends the bakcground --->
+        <div id="second-page"><div id="game-area"></div><button id="back-button"><i class="arrowBackIcon"></i>Go back</button></div>
+    </div>
+
+    </body>
+</html>
