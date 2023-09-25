@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   playButton.textContent = 'Play Pachinko';
   document.getElementById('game-area').appendChild(playButton);
   playButton.addEventListener('click', () => {
-    setupPachinko();
+    setupPachinko(false);
     playButton.remove();
   })
 
@@ -18,14 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 //const math = require('..')
-function setupPachinko() {
+function setupPachinko(replay) {
+
+  
+  
 
   const goBackButton = document.getElementById('back-button')
-  //Remove if connected to any other game
   goBackButton.addEventListener('click', () => {
       clearPachinko();
+      if(!replay){
+      addPlayButton();
+    }
   }, {once:true})
-    
+
+
 
   let newGameSpace = document.createElement('div');
   newGameSpace.setAttribute('id','gamespace');
@@ -615,18 +621,25 @@ function setupPachinko() {
         replayButton.addEventListener('click', (event) => {
           event.preventDefault(); // prevent the event from propagating upwards! (not working)
           clearPachinko();
-          setupPachinko();
+          setupPachinko(true);
           //restart(level1);
         })
-        }
-        if(lives == 0){
+        } else if(lives == 0){
           gamePlaying = false;
         
         //Remove all pegs
-        for(let i = 0; i < pegs.length; i++){
+        /*for(let i = 0; i < pegs.length; i++){
           document.getElementById(`peg-${i}`).remove();
+        }*/
+        let pegElements = document.getElementsByClassName('peg');
+
+        //Doesnt work? Why? Async?
+        for(let i = 0; i < pegElements.length; i++){
+          document.getElementById(`${pegElements[i].id}`).remove();
         }
-        
+
+
+
         pegs.length = 0;
         let winnerText = document.createElement('h2');
         winnerText.classList.add('gameText');
@@ -647,7 +660,7 @@ function setupPachinko() {
         replayButton.addEventListener('click', (event) => {
           event.preventDefault(); // prevent the event from propagating upwards! (not working)
           clearPachinko();
-          setupPachinko();
+          setupPachinko(true);
           //restart(level1);
         })
         }
@@ -712,19 +725,19 @@ function setupPachinko() {
     pegs.length = 0;
     balls.length = 0;
 
+  }
+  
+  
+  function addPlayButton() {
     let playButton = document.createElement('button');
     playButton.textContent = 'Play Pachinko';
     document.getElementById('game-area').appendChild(playButton);
     playButton.addEventListener('click', () => {
-      setupPachinko();
+      setupPachinko(false);
       playButton.remove();
     })
-  
-
   }
-  
-  
-  
+
   // To stop the interval (for example, when you want to pause the tick):
   // clearInterval(intervalID);
   
