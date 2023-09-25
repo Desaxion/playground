@@ -143,6 +143,9 @@ button:hover {
   justify-content: center;
 
 }
+#project-content {
+  margin-bottom: 100px;
+}
 .project-entry {
   margin-top: 50px;
 }
@@ -153,10 +156,12 @@ button:hover {
 .project-entry-content .project-images{
   display:flex;
   flex-direction: row;
+  
 }
 .project-entry-content .project-images img {
   border: 1px solid white;
   width: 200px;
+  height: 200px;
   margin-left: 20px;
 
 }
