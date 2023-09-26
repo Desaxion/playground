@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //pdf download
         const pdfButton = document.getElementById("pdf-button");
-        
+        if(pdfButton){
         pdfButton.addEventListener("click", function () {
             const curriculumContent = document.getElementById("curriculum-content");
             const contentClone = curriculumContent.cloneNode(true);
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Save the PDF as a file with the name "curriculum.pdf"
             doc.save("curriculum.pdf");
         });
-        
+        }
 
       
 
