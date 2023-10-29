@@ -16,6 +16,11 @@ html, body {
   color: white;
 }
 
+
+#signature {
+	width: 14em;
+}
+
 /*  SCrollbar  */
  /* width */
  ::-webkit-scrollbar {
