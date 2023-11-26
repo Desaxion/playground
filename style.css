@@ -433,3 +433,18 @@ button:hover .arrowBackIcon {
   background: red;
 }
 
+/**** Tetris *****/
+#tetris-space{
+  border: 1px solid white;
+  position: absolute;
+  top: 10%;
+}
+
+.tetris-block{
+  position: absolute;
+  border: 1px solid white;
+}
+
+.piece{
+  position: absolute;
+}
