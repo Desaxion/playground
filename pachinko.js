@@ -183,9 +183,9 @@ function setupPachinko(replay) {
 
   for(let i = 0; i < clusters; i++){
     let clusterPosition = {x: gameSpaceLeftEdge + clusterStep + i*clusterStep, y: gameSpaceTopEdge +  (screenHeight / 2) + sinWeight*Math.sin(Math.PI* (i + 1/clusters))}
-    console.log(Math.sin(Math.PI* (i/clusters)))
+    //console.log(Math.sin(Math.PI* (i/clusters)))
     for(let j = 0; j < rows; j++){
-    console.log(j/rows*2*Math.PI,j/rows*2*Math.PI*57.2957795)
+    //console.log(j/rows*2*Math.PI,j/rows*2*Math.PI*57.2957795)
 //console.log(j/rows)
      //console.log(Math.cos((j/rows)*Math.PI*2),Math.sin((j/rows)*Math.PI*2))
       level1.pegs.push({position: {x: clusterPosition.x + clusterRadius*Math.cos((j/rows)*Math.PI*2), y: clusterPosition.y + clusterRadius*Math.sin((j/rows)*Math.PI*2)}, radius: level1Radius})

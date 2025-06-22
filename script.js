@@ -37,11 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         }
 
-      
+    let blob = document.getElementById("blob");
+    function setBlobPosition(e){
+        
+        let midPoint = {x:window.innerWidth/2,y:window.innerHeight/2};
 
+        cursorPosFromMidPoint = {x:e.clientX - midPoint.x, y:e.clientY - midPoint.y};
+
+        blob.style.left = - cursorPosFromMidPoint.x + midPoint.x - (blob.clientWidth/2) + "px"
+        blob.style.top = - cursorPosFromMidPoint.y + midPoint.y - (blob.clientHeight/2) + "px";
+    };
 
     document.addEventListener('mousemove', (e) => {
        // setTitlePosition(e);
+        setBlobPosition(e)
+
     })
 
 
