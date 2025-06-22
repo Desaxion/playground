@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="icons/paw.svg">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>    
     <script src="pachinko.js"></script>
     <script src="script.js"></script>
@@ -16,6 +15,7 @@
     <div id="background-wrapper">
     <div id="background">
         <div id="body">
+            <div id="blob"></div>
             <div id="titleBox">
                 <!--<h4 class="name">Johan</h4><h4 class="name">Björnfoot</h4>-->
                 <h4 class="name">Johan Björnfoot</h4>
@@ -36,30 +36,32 @@
                         <br><br><br>
                         This website was made in pure HTML, CSS and JS, some of the icons under the contact tab was acquired from fontawesome. 
                     </p>
-					<img id="signature" src="SignatureVit.svg" alt="signature">
+					<img id="signature" src="SignatureColor.svg" alt="signature">
                 </div>
                  <div id="curriculum-content" class="content invisible">
                     <div id="curriculum-title"><h4 class="content-title">Curriculum Vitae</h4><!--<button id="pdf-button">Download as .pdf</button>--></div>
 
-                    <div id="education" ></div>
-                        <p class="divider">Education</p>
-                        <ul id="education-list" class="curriculum-list">
-                            <li><div class="curriculum-entry"><p>Masters degree in Media Technology</p><p class="minor">Linköping University</p><p>2022 - </p></div></li>
-                            <li><div class="curriculum-entry"><p>Bachelors degree in Media Technology</p><p class="minor">Linköping University</p><p>2019 - 2022</p></div></li>
-                            <li><div class="curriculum-entry"><p>Technical Preporatory Year</p><p class="minor">Chalmers University of Technology</p><p>2018 - 2019</p></div></li>
-                            <li><div class="curriculum-entry"><p>High School, Orientation in Natural Sciences</p><p class="minor">Linköping University</p><p>2014 - 2017</p></div></li>
-                        </ul>
+
                     <div id="experience" >
                         <p class="divider">Experience</p>
                         <ul id="experience-list" class="curriculum-list">
-		            <li><div class="curriculum-entry"><p>University Study Coach</p><p class="minor">Allakando</p><p>2023 - </p></div></li>
-		            <li><div class="curriculum-entry"><p>Web Service Consultant</p><p class="minor">Unitalent</p><p>2023 - </p></div></li>
-                            <li><div class="curriculum-entry"><p>Software Developer</p><p class="minor">Exsitec AB</p><p>Summer 2023</p></div></li>
-                            <li><div class="curriculum-entry"><p>Kitchen Sales Co-Worker</p><p class="minor">IKEA</p><p>2020 - 2023</p></div></li>
-                            <li><div class="curriculum-entry"><p>Alarm operator</p><p class="minor">Sector Alarm</p><p>Summer 2019</p></div></li>
-                            <li><div class="curriculum-entry"><p>Store Clerk</p><p class="minor">Pressbyrån Sahlgrenska Centralkomplexet</p><p>2017 - 2019</p></div></li>
+                    <li><div class="curriculum-entry"><p>Software Developer and Technical Artist</p><p class="minor">Mentice</p><p>2024 - </p><div class="info"><div></div></li>
+		            <li><div class="curriculum-entry"><p>University Study Coach</p><p class="minor">Allakando</p><p>2023 - 2024</p><div class="info"><div></div></li>
+		            <li><div class="curriculum-entry"><p>Web Service Consultant</p><p class="minor">Unitalent</p><p>2023 - 2024</p><div class="info"><div></div></li>
+                            <li><div class="curriculum-entry"><p>Software Developer</p><p class="minor">Exsitec AB</p><p>Summer 2023</p><div class="info"><div></div></li>
+                            <li><div class="curriculum-entry"><p>Kitchen Sales Co-Worker</p><p class="minor">IKEA</p><p>2020 - 2023</p><div class="info"><div></div></li>
+                            <li><div class="curriculum-entry"><p>Alarm operator</p><p class="minor">Sector Alarm</p><p>Summer 2019</p><div class="info"><div></div></li>
+                            <li><div class="curriculum-entry"><p>Store Clerk</p><p class="minor">Pressbyrån Sahlgrenska Centralkomplexet</p><p>2017 - 2019</p><div class="info"><div></div></li>
                         </ul>
-                    </div>    
+                    </div>   
+                   <div id="education" ></div>
+                        <p class="divider">Education</p>
+                        <ul id="education-list" class="curriculum-list">
+                            <li><div class="curriculum-entry"><p>Masters degree in Media Technology</p><p class="minor">Linköping University</p><p>2022 - 2024</p></div></li>
+                            <li><div class="curriculum-entry"><p>Bachelors degree in Media Technology</p><p class="minor">Linköping University</p><p>2019 - 2022</p></div></li>
+                            <li><div class="curriculum-entry"><p>Technical Preporatory Year</p><p class="minor">Chalmers University of Technology</p><p>2018 - 2019</p></div></li>
+                            <li><div class="curriculum-entry"><p>High School, Orientation in Natural Sciences</p><p class="minor">Linköping University</p><p>2014 - 2017</p></div></li>
+                        </ul> 
                     <div id="software" >
                         <p class="divider">Software knowledge</p>
                         <ul id="software-list" class="curriculum-list">
@@ -102,9 +104,9 @@
                 </div>
                 <div id="contact-content" class="content invisible"> 
                     <ul id="contact-list">
-                        <li><img src="icons/phone-solid.svg" alt="Phone icon"></img>+46 707 35 00 03</li>
-                        <li><img src="icons/envelope-solid.svg" alt="Email icon"></img>johar192@student.liu.se</li>
-                        <li><img src="icons/linkedin.svg" alt="Phone icon"></img><a href="https://www.linkedin.com/in/johan-bj%C3%B6rnfoot-206204227/">LinkedIn profile</a></li>
+                        <li><img src="icons/phone-solid-color.svg" alt="Phone icon"></img>+46 707 35 00 03</li>
+                        <li><img src="icons/envelope-solid-color.svg" alt="Email icon"></img>johan.bjornfoot@outlook.com</li>
+                        <li><img src="icons/linkedin-color.svg" alt="Phone icon"></img><a href="https://www.linkedin.com/in/johan-bj%C3%B6rnfoot-206204227/">LinkedIn profile</a></li>
                     </ul>
                 </div>
                 <div id="games-content" class="content invisible"> 

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
+const bc =  "#22205F";
 
 function setupPachinko(replay) { 
 
@@ -56,7 +57,7 @@ function setupPachinko(replay) {
       peg.style.width = (2*pegs[i].radius - 2*pegThickness) + 'px';
       peg.style.height = (2*pegs[i].radius - 2*pegThickness) + 'px';
       //peg.style.background = 'white';
-      peg.style.border = `${pegThickness}px solid white`;
+      peg.style.border = `${pegThickness}px solid ${bc}`;
       //peg.style.transform = `translateX(-${pegs[i].radius - pegThickness}px) translateY(-${pegs[i].radius - pegThickness}px)`;
       peg.style.transform = `translate(-${pegs[i].radius}px, -${pegs[i].radius}px)`;
   
@@ -331,7 +332,7 @@ function setupPachinko(replay) {
     
     ball.style.width = 2*ballRadius + 'px';
     ball.style.height = 2*ballRadius + 'px'; 
-    ball.style.border = ballThickness + "px solid white";
+    ball.style.border = ballThickness + "px solid " + bc;
   
     ball.style.top =  ballPosition.y + 'px';
     ball.style.left = ballPosition.x + 'px';
@@ -455,7 +456,7 @@ function setupPachinko(replay) {
        
 
           let pegElement = document.getElementById(`peg-${pegs[j].id}`)
-          pegElement.style.background = 'white'//"rgba(1,1,1,1)";
+          pegElement.style.background = bc//"rgba(1,1,1,1)";
           
           //Calculate new force and such
           let velocityArray = [balls[i].velocity.x, balls[i].velocity.y]  

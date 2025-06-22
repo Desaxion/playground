@@ -1,5 +1,10 @@
 /*--------- GENERAL ---------*/
-
+:root {
+  --color-primary-heading:#22205F;
+  --color-primary-text: #73739B;
+  --color-gradient-start: #F7F297;
+  --color-gradient-end:#D8F0F7;
+}
 @font-face {
     font-family: 'IBM Plex Mono';
     src: url('IBM_Plex_Mono/IBMPlexMono-Regular.ttf') format('truetype');
@@ -13,11 +18,13 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  color: white;
+  color: var(--color-primary-heading);
 }
 
 
+
 #signature {
+  margin-top: 4em;
 	width: 14em;
 }
 
@@ -61,8 +68,8 @@ button {
   font-family: 'IBM Plex Mono';
   padding: 10px;
   border-radius: 3px;
-  border: 1px solid white;
-  color: white;
+  border: 1px solid var(--color-primary-heading);
+  color: var(--color-primary-heading);
   background: rgba(0,0,0,0);
   transition: background 0.1s ease;
   max-height:max-content;
@@ -73,8 +80,8 @@ button {
 
 button:hover {
   cursor: pointer;
-  color:  #02001f;
-  background: white;
+  color:  var(--color-gradient-start);
+  background: var(--color-primary-heading);
 }
 
 #drawing-board {
@@ -88,7 +95,7 @@ button:hover {
   display: flex;
   /*justify-content:center;*/
   align-items: center;
-  color: white;
+  color: var(--color-primary-heading);
   position: relative;
   flex-direction: column;
 }
@@ -113,7 +120,7 @@ button:hover {
 #side_menu li h4:after {
   display:block;
   content: "";
-  background: white;
+  background: var(--color-primary-heading);
   height: 1px;
   width: 0%;
   transition: width 0.3s ease;
@@ -164,7 +171,7 @@ button:hover {
   
 }
 .project-entry-content .project-images img {
-  border: 1px solid white;
+  border: 1px solid var(--color-primary-heading);
   width: 200px;
   height: 200px;
   margin-left: 20px;
@@ -192,7 +199,7 @@ button:hover {
   transform: translateY(25%);
 }
 #contact-list li a {
-  color:white;
+  color: var(--color-primary-heading);
   text-decoration:none;
   display:flex;
   flex-direction: column;
@@ -203,7 +210,7 @@ button:hover {
   width: 0px;
   min-height: 1px;
   height: 1px;
-  background-color: white;
+  background-color: var(--color-primary-heading);
   transition: 0.2s ease;
 }
 #contact-list li:hover a:after {
@@ -263,7 +270,7 @@ button:hover {
 
 .divider::after {
   content: "";
-  background:white;
+  background:var(--color-primary-heading);
   min-width: 37%;
   max-width: 37%;
   height: 1px;
@@ -271,7 +278,7 @@ button:hover {
 
 }
 #gamespace {
-  border: 1px solid white;
+  border: 1px solid var(--color-primary-heading);
   min-width: 75%;
   max-width: 75%;
   min-height: 75%;
@@ -304,9 +311,9 @@ margin-bottom: 20px;
   left: 50%;
   height: 40px;
   width: 0px;
-  border: 2px solid white;
+  border: 2px solid var(--color-primary-heading);
   border-radius: 2px;
-  background: white;
+  background: var(--color-primary-heading)hite;
   transform: /*translate(-50%, -120%)*/ rotate(180deg);
   opacity: 0;
   transition: opacity 0.1s ease;
@@ -317,10 +324,10 @@ margin-bottom: 20px;
   content:"";
   height: 20px;
   width: 0px;
-  border: 2px solid white;
+  border: 2px solid var(--color-primary-heading);
   border-radius: 2px;
   transform: translate(-9.2px,-6px) rotate(45deg);
-  background:white;
+  background:var(--color-primary-heading);
 }
 
 .arrow::after {
@@ -328,10 +335,10 @@ margin-bottom: 20px;
   content:"";
   height: 20px;
   width: 0px;
-  border: 2px solid white;
+  border: 2px solid var(--color-primary-heading);
   border-radius: 2px;
   transform: translate(5.2px,-6px) rotate(-45deg);
-  background:white;
+  background:var(--color-primary-heading);
 }
 .arrowIcon {
   display:block;
@@ -339,13 +346,13 @@ margin-bottom: 20px;
   height: 10px;
   border-style: none solid solid none;
   border-width: 2px;
-  border-color: white;
+  border-color: var(--color-primary-heading);
   border-radius: 1px;
   transform: rotate(-45deg) translateY(2px) translateX(-2px);
   transition: border-color 0.1s ease, transform 0.5s ease;
 }
 button:hover .arrowIcon {
-  border-color: #02001f;
+  border-color: var(--color-gradient-start);
   transform:rotate(-45deg) translateY(4px) translateX(0px);
 }
 
@@ -355,13 +362,13 @@ button:hover .arrowIcon {
   height: 10px;
   border-style: solid none none solid;
   border-width: 2px;
-  border-color: white;
+  border-color: var(--color-primary-heading);
   border-radius: 1px;
   transform: rotate(-45deg) translateY(2px) translateX(-2px);
   transition: border-color 0.1s ease, transform 0.5s ease;
 }
 button:hover .arrowBackIcon {
-  border-color: #02001f;
+  border-color: var(var(--color-gradient-start));
   transform:rotate(-45deg) translateY(0px) translateX(-4px);
 }
 
@@ -370,7 +377,7 @@ button:hover .arrowBackIcon {
   position:absolute;
   top: 50%;
   left:50%;
-  color: white;
+  color: var(--color-primary-heading)ite;
 }
 #background-wrapper {
   position: absolute;
@@ -378,7 +385,7 @@ button:hover .arrowBackIcon {
   left: 0;
   width: 200vw;
   height: 100vh;
-  background-color: #02001f;
+  background-color: var(--color-gradient-start);
   display: flex;
   align-items: start;
   justify-content: center;
@@ -421,7 +428,7 @@ button:hover .arrowBackIcon {
 .ball {
   position: absolute;
   border-radius: 50%;
-  border: 3px solid white;
+  border: 3px solid var(--color-primary-heading);
   opacity: 0;
   transition: opacity 0.1s ease;
 }
