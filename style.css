@@ -4,6 +4,33 @@
   --color-primary-text: #73739B;
   --color-gradient-start: #fcfac2/*#F7F297*/;
   --color-gradient-end:#e8f6fa/*#D8F0F7*/;
+    
+  --cpp-color-b: #f3b1f4;
+  --cpp-color: #a53da7;
+
+  --webgl-color-b: #d05e3c;
+  --webgl-color: #6c1d05;
+
+  --js-color-b: #f9f074;
+  --js-color: #988e00;
+
+  --ox-color-b: #81f974;
+  --ox-color: #009817;
+
+  --gl-color-b: #74bdf9;
+  --gl-color: #003d98;
+
+  --b-color-b: #ffc973;
+  --b-color: #935b00;
+
+  --ue-color-b: #b38eef;
+  --ue-color: #663da7;
+
+  --matlab-color-b: #ef8e9c;
+  --matlab-color: #a73d3d;
+
+    --glsl-color-b: #8eefbd;
+  --glsl-color: #3da780;
 
   --blob-size: 80vw;
 }
@@ -21,9 +48,109 @@ html, body {
   padding: 0;
   overflow: hidden;
   color: var(--color-primary-heading);
+  /*cursor: url("pawColor.svg") 12 12, auto;*/
 }
 
+.buttons-holder {
+  display:flex;
+  flex-direction:row;
+  
+}
 
+.competencies {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.c {
+  border: solid;
+  border-radius: 3px;
+  border-width: 1px;
+  margin-right:2px;
+  margin-bottom:2px;
+  padding:2px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  width: fit-content;
+}
+.c.cpp {
+  border-color:var(--cpp-color);
+  background-color: var(--cpp-color-b);
+}
+.c.cpp:after {
+  content:"C++";
+  color: var(--cpp-color);
+}
+
+.c.webgl {
+  border-color:var(--webgl-color);
+  background-color: var(--webgl-color-b);
+}
+.c.webgl:after {
+  content:"WebGL";
+  color: var(--webgl-color);
+}
+
+.c.js {
+  border-color:var(--js-color);
+  background-color: var(--js-color-b);
+}
+.c.js:after {
+  content:"JavaScript";
+  color: var(--js-color);
+}
+
+.c.ox  {
+  border-color:var(--ox-color);
+  background-color: var(--ox-color-b);
+}
+.c.ox:after  {
+  content:"Nvidia OptiX";
+  color: var(--ox-color);
+}
+
+.c.gl  {
+  border-color:var(--gl-color);
+  background-color: var(--gl-color-b);
+}
+.c.gl:after  {
+  content:"OpenGL";
+  color: var(--gl-color);
+}
+.c.b  {
+  border-color:var(--b-color);
+  background-color: var(--b-color-b);
+}
+.c.b:after  {
+  content:"3D Modeling";
+  color: var(--b-color);
+}
+.c.ue  {
+  border-color:var(--ue-color);
+  background-color: var(--ue-color-b);
+}
+.c.ue:after  {
+  content:"Unreal Engine";
+  color: var(--ue-color);
+}
+
+.c.matlab  {
+  border-color:var(--matlab-color);
+  background-color: var(--matlab-color-b);
+}
+.c.matlab:after  {
+  content:"Matlab";
+  color: var(--matlab-color);
+}
+.c.glsl  {
+  border-color:var(--glsl-color);
+  background-color: var(--glsl-color-b);
+}
+.c.glsl:after  {
+  content:"GLSL";
+  color: var(--glsl-color);
+}
 
 #signature {
   margin-top: 4em;
@@ -149,6 +276,38 @@ button:hover {
 .visible {
   display:flex;
   flex-direction: column;
+}
+
+.link-button{
+  display: flex;
+  flex-direction: row;
+  font-family: 'IBM Plex Mono';
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid var(--color-primary-heading);
+  color: var(--color-primary-heading);
+  background: rgba(0,0,0,0);
+  transition: background 0.1s ease;
+  max-height:max-content;
+  width: fit-content;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+.link-button:hover{
+  color:  var(--color-gradient-start);
+  background: var(--color-primary-heading);
+}
+
+.link-button:hover .arrowIcon {
+  border-color: var(--color-gradient-start);
+  transform:rotate(-45deg) translateY(4px) translateX(0px);
+}
+
+.link-button:hover .arrowBackIcon {
+  border-color: var(var(--color-gradient-start));
+  transform:rotate(-45deg) translateY(0px) translateX(-4px);
 }
 
 .game-button{
@@ -386,6 +545,10 @@ button:hover .arrowBackIcon {
 }
 
 /*---------- SPECIFIC ----------*/
+#masterThesis-button {
+  margin: 25px;
+}
+
 #name-holder {
   position:absolute;
   top: 50%;

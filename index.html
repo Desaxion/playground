@@ -57,7 +57,11 @@
                    <div id="education" ></div>
                         <p class="divider">Education</p>
                         <ul id="education-list" class="curriculum-list">
-                            <li><div class="curriculum-entry"><p>Masters degree in Media Technology</p><p class="minor">Linköping University</p><p>2022 - 2024</p></div></li>
+                            <li><div class="curriculum-entry"><p>Masters degree in Media Technology</p><p class="minor">Linköping University</p><p>2022 - 2024</p>
+                            <a class="link-button" id="masterThesis-button" href="https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A1891696&dswid=-7785">Read my Master Thesis Here <i class="arrowIcon"></i></a>
+                            <p class="minor">In the thesis project I constructed a path tracer using Nvidia OptiX, to evaluate the possibility of rendering Sparse BRDFs in real time, as compared to regular measured BRDFs.</p>
+                            </div>
+                            </li>
                             <li><div class="curriculum-entry"><p>Bachelors degree in Media Technology</p><p class="minor">Linköping University</p><p>2019 - 2022</p></div></li>
                             <li><div class="curriculum-entry"><p>Technical Preporatory Year</p><p class="minor">Chalmers University of Technology</p><p>2018 - 2019</p></div></li>
                             <li><div class="curriculum-entry"><p>High School, Orientation in Natural Sciences</p><p class="minor">Linköping University</p><p>2014 - 2017</p></div></li>
@@ -84,21 +88,94 @@
                 </div>
             
                 <div id="project-content" class="content invisible"> <h4 class="content-title">Projects</h4>
-                <p>Here are a few of my projects that I have been working on.</p> 
+                <p>Here are a few of my projects that I have been working on.</p>
+                    <div class="project-entry"><p class="divider">WebGL Primer</p>
+                        <div class="project-entry-content"><p class="about-project">In order to further spur my own development, I created a WebGL primer program that for now can read .obj files through an input string, and visualize the model and its normal vectors. It’s still in development, and will evolve to be a working 3D engine for web browser, which I can use to continue my projects. The program was written in JavaScript and WebGL, the model shown on the site right now is made in BlockBench.</p><div class="project-images"><img src="images/webgl-primer.png" alt="optix"></div></div>
+                        <div class="competencies">
+                            <div class="c webgl"></div>
+                            <div class="c js"></div>
+                            <div class="c glsl"></div>
+                        </div>
+                        <div class="buttons-holder">
+                        <a class="link-button" href="https://desaxion.github.io/wind-in-the-sail/">Demo<i class="arrowIcon"></i></a><a class="link-button" href="https://github.com/Desaxion/wind-in-the-sail" >GitHub Repo<i class="arrowIcon"></i></a>
+                        </div>
+                        
+                    </div>
+                    <div class="project-entry"><p class="divider">Nvidia OptiX Raytracer</p>
+                        <div class="project-entry-content"><p class="about-project">To prepare for my master thesis project in realtime rendering and data driven BRDF-models, I created a pathtracer using Nvidia Optix, a ray-tracing API build on Nvidia CUDA. The raytracing is basically carried out on the GPU, while the geometry, colors and other necessities are held and used on the CPU of the computer. For the purpose of the example, a Nvidia RTX 3060 was used.</p><div class="project-images"><img src="images/nvidia-optix.png" alt="optix"></div></div>
+                        
+                        <div class="competencies">
+                        <div class="c cpp"></div>
+                        <div class="c ox"></div>
+                        </div>
+                        <div class="buttons-holder">
+                        <a class="link-button" href="https://www.youtube.com/watch?v=_861XQRlpN8">Demo Video<i class="arrowIcon"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-entry"><p class="divider">Cel Shader</p>
+                        <div class="project-entry-content"><p class="about-project">To explore and understand how cel shading and contour drawing works, as I have always been interested of that aesthatic, I created my own demos in OpenGL. The methods I use are built on both an inverted mesh rendering method, and another method is sobel filtering the depth buffer to create contours on the model. The model used for this project is courtesy of Nintendo Inc.</p><div class="project-images"><img src="images/celshader.png" alt="celshader"></div></div>
+                        <div class="competencies">
+                        <div class="c cpp"></div>
+                        <div class="c gl"></div>    
+                        <div class="c glsl"></div>                
+                        </div>
+                        <div class="buttons-holder">
+                        <a class="link-button" href="https://www.youtube.com/watch?v=RSZJz7pJGGg">Demo Video<i class="arrowIcon"></i></a><a class="link-button" href="https://github.com/Desaxion/cel-shading-project" >GitHub Repo<i class="arrowIcon"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-entry"><p class="divider">ChronoShift</p>
+                        <div class="project-entry-content"><p class="about-project">A concept game me and my classmate made for the course “Design and Programming of Computer Games”, made in Unreal Engine 5. The game is a 3D-platformer puzzle game, heavily inspired by the phase shift gimmick from the level “Effect and Cause” from Titanfall 2. The player has to traverse a level existing at two different points in time, and switch between the two different times to complete platform jumps and puzzles. The game is heavily unpolished, but worked well enough as a concept. Most of the assets used comes from the game “City of Brass”, and some were modeled by us.</p><div class="project-images"><img src="images/chronoshift-square.png" alt="chronoshift"></div></div>
+                        <div class="competencies">
+                        <div class="c b"></div>
+                        <div class="c cpp"></div>  
+                        <div class="c ue"></div>  
+                        </div>
+                        <div class="buttons-holder">
+                        <a class="link-button" href="https://www.youtube.com/watch?v=cYaTEMIMdm4&feature=youtu.be">Demo Video<i class="arrowIcon"></i></a>
+                        </div>
+                    </div> 
                     <div class="project-entry"><p class="divider">Star Dwarves</p>
                         <div class="project-entry-content"><p class="about-project">Star Dwarves was a small game I created with my classmate, in which the player controlled a small spaceship and was supposed to avoid procedurally generated obstacles. The purpose of the game was for us to learn more about computer graphics, and to learn more about game programming. The game was created in C++ and OpenGL, with libraries like GLFW and ASSIMP. The space ship model was made by me in the software BlockBench. </p><div class="project-images"><img src="images/Asteroid.png" alt="star dwarves asteroid"><img src="images/Lava.png" alt="star dwarves lava"></div></div>
+                        <div class="competencies">
+                        <div class="c b"></div>
+                        <div class="c cpp"></div>  
+                        <div class="c gl"></div>  
+                        <div class="c glsl"></div>
+                        </div>
+                        <div class="buttons-holder">
+                        <a class="link-button" href="https://github.com/Desaxion/StarDwarves---Cmake-version/">GitHub Repo<i class="arrowIcon"></i></a>
+                        </div>
                     </div>
+                    
                     <div class="project-entry"><p class="divider">Ray tracing</p>
                         <div class="project-entry-content"><p class="about-project">During my first year of my master's programme I wrote my own Ray tracer in C++ for the course <span class="italic">TNCG15: Advanced Global Ilummination and Rendering</span>. The Ray tracer runs on the CPU and uses Monte-Carlo ray tracing together with Möller-Trumbore surface intersection computation techniques. The world which it renders is implicitly described, with mathematical descriptions for every surface. It also has support for either diffuse surfaces, mirror surfaces or light emissive surfaces.The final image is saved in a .ppm file. Libraries used for this project was OpenGL Mathematics, to help with vector calculations.</p><div class="project-images"><img src="images/2400x2400.png" alt="Ray Tracing"></div></div>
+                        <div class="competencies">
+                        <div class="c cpp"></div>  
+                        </div>
+                        <div class="buttons-holder">
+                        <a class="link-button" href="https://github.com/Desaxion/RayTracing">GitHub Repo<i class="arrowIcon"></i></a>
+                        </div>
                     </div>
                     <div class="project-entry"><p class="divider">Landlord Simulator 2022</p>
                         <div class="project-entry-content"><p class="about-project">Despite its misleading name, this project was a VR-based horror game project, created in Unreal Engine 5. The game is rather short, but was a way for me and my partners to explore how VR-games can be created, and how to incorporate immersive sounds in the game, as a lot of gameplay queues in the game are given through sound. Examples of this can be hearing where mice are in the walls to place mouse traps in the correct position, or finding which resident in the building is making too much noise. Eventually as the game progresses, it turns out the building the player is working in has a dark secret; a monster also lives in the building.</p><div class="project-images"><img src="images/finallevel.png" alt="landlord level"><img src="images/Corridor.png" alt="landlord corridor"></div></div>
+                            <div class="competencies">
+                        <div class="c b"></div>
+                        <div class="c cpp"></div>  
+                        <div class="c ue"></div>  
+                        </div>
                     </div>
                     <div class="project-entry"><p class="divider">Lego Mosaics</p>
                         <div class="project-entry-content"><p class="about-project">To be able to reproduce images using LEGO pieces, I created a small MATLAB script that read an image file and creates an image reproduced with LEGO bricks, favoring either vertical or horizontal placement of the pieces. </p><div class="project-images"><img src="images/image1.jpeg" alt="image"><img src="images/legoImage.jpg" alt="lego image"></div></div>
-                   </div>
+                        <div class="competencies">
+                        <div class="c matlab"></div>
+                        </div>
+                    </div>
                     <div class="project-entry"><p class="divider">Minecraft Shader: Vanilla Looks</p>
                         <div class="project-entry-content"><p class="about-project">During the pandemic I played a lot of Minecraft and using our newly aqcuired knowledge of shader programming, me and a friend created a shader pack for Minecraft which we called <span class="italic">Vanilla Looks</span>. The shaderpack included shader techniques like depth of field, water reflections (based in screen space) and bloom. </p><div class="project-images"><img src="images/minecraft1.png" alt="water reflections"><img src="images/minecraft2.png" alt="DoF"></div></div>
+                        <div class="c glsl"></div>
+                        <div class="buttons-holder">
+                        <a class="link-button" href="https://www.youtube.com/watch?v=brOpbHfSxbE&feature=youtu.be">Demo Video<i class="arrowIcon"></i></a>
+                        </div>
                     </div>
                 
                 </div>
