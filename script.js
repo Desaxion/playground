@@ -2,7 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-
+    //const b = document.getElementById("background");
+    let firstTimeMovingMouse = true;
 
     const background = document.getElementById('background-wrapper');
     const firstName = document.getElementsByClassName('name')[0];
@@ -50,8 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('mousemove', (e) => {
        // setTitlePosition(e);
-        setBlobPosition(e)
 
+        setBlobPosition(e)
+        // When you first move the mouse, you will see the stuff
+        if(firstTimeMovingMouse){
+            background.style.opacity = 1;
+            firstTimeMovingMouse = false;
+        }
     })
 
 

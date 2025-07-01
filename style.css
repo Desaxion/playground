@@ -207,6 +207,10 @@ button {
   max-height: 40px;
 }
 
+#pawImg {
+  height:2rem;
+}
+
 button:hover {
   cursor: pointer;
   color:  var(--color-gradient-start);
@@ -273,9 +277,17 @@ button:hover {
   margin-top: 50px;
 }
 
+#topRow {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+
 .visible {
   display:flex;
   flex-direction: column;
+  opacity:1;
+  height:min-content;
 }
 
 .link-button{
@@ -315,8 +327,14 @@ button:hover {
   flex-direction:row;
 }
 
+.content.invisible {
+  /*display: none;*/
+  height:0;
+  opacity:0;
+}
+
 .invisible {
-  display: none;
+  /*display: none;*/
 }
 
 #titleBox {
@@ -402,12 +420,20 @@ button:hover {
   flex-direction: column;
   /*justify-content: center;
   align-items: center;*/
+  position: relative;
 }
 
 .content-title{
   font-weight: 100;
   font-size: 15pt;
   margin-top: 0;
+}
+
+.content {
+  position: absolute;
+  top:0;
+  transition:0.1s ease;
+  overflow: hidden;
 }
 
 .curriculum-list {
@@ -566,6 +592,7 @@ button:hover .arrowBackIcon {
   align-items: start;
   justify-content: center;
   transition: 0.5s ease;
+  opacity:0;
 }
 #background {
   position: absolute;
