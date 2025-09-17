@@ -1,6 +1,12 @@
-class Animation extends Renderable {
-    constructor(ctx,characterName, animationName,pos,speed = 100){
-        super(ctx,0,0,pos,"platformer/sprites/" + characterName + "/" + animationName + "/", 0);
+class Animation {
+    constructor(ctx,characterName, animationName,pos,speed = 100, width=0,height=0, position=[0,0],scale){
+        //super(ctx,0,0,pos,"platformer/sprites/" + characterName + "/" + animationName + "/", 0);
+        let path = "platformer/sprites/" + characterName + "/" + animationName
+        this.scale = 3;
+        this.ctx = ctx;
+        this.width = width;
+        this.height = height;
+        this.position = position;
         this.imgDone = false;
         this.jsonDone = false;
         this.ready = false;
@@ -9,7 +15,7 @@ class Animation extends Renderable {
         this.name = characterName
         this.speed = speed;
         this.frames = []
-
+        
         this.sheet.onload = () => {
             this.imgDone = true;  // 'this' now refers to the 'Animation' instance
         };

@@ -1,4 +1,5 @@
-
+// to set git upstream, just make a new branch and then:
+// git push -u origin <branch name>
 
 document.addEventListener('DOMContentLoaded', () => {
 

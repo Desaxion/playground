@@ -1,4 +1,5 @@
 class Renderable {
+    static renderables = []
     constructor(ctx, width = 0,height = 0, position, path = "", order=0,scale) {
         this.width = width;
         this.height = height;

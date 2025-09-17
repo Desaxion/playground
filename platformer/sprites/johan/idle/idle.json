@@ -1,14 +1,14 @@
 {
-	"root":"johan",
-	"name":"idle",
-	"width":"40",
-	"height":"60",
-	"frames" : [
-		0.1,
+	"root": "johan",
+	"name": "idle",
+	"width": 40,
+	"height": 60,
+	"frames": [
 		0.1,
 		0.1,
 		0.2,
 		1.0,
+		0.1,
 		0.1,
 		0.1,
 		0.1,
